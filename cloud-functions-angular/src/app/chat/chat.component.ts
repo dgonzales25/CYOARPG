@@ -24,11 +24,10 @@ const LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
 const PROFILE_PLACEHOLDER_IMAGE_URL = '/assets/images/profile_placeholder.png';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  selector: 'app-chat',
+  templateUrl: './chat.component.html'
 })
-export class AppComponent {
+export class ChatComponent {
   user: Observable<firebase.User>;
   currentUser: firebase.User;
   messages: Observable<any[]>;
@@ -90,14 +89,6 @@ export class AppComponent {
         this.topics = '';
       }
     });
-  }
-
-  login() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
-  }
-
-  logout() {
-    this.afAuth.auth.signOut();
   }
 
   // TODO: Refactor into text message form component
