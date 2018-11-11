@@ -18,6 +18,7 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { MatSnackBar } from '@angular/material';
+import { LoginServiceService } from './../login-service.service';
 import * as firebase from 'firebase';
 
 const LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
@@ -25,7 +26,8 @@ const PROFILE_PLACEHOLDER_IMAGE_URL = '/assets/images/profile_placeholder.png';
 
 @Component({
   selector: 'app-chat',
-  templateUrl: './chat.component.html'
+  templateUrl: './chat.component.html',
+  styleUrls: ['./chat.component.css']
 })
 export class ChatComponent {
   user: Observable<firebase.User>;
@@ -34,9 +36,12 @@ export class ChatComponent {
   profilePicStyles: {};
   topics = '';
   value = '';
+  visible: boolean;
 
-  constructor(public db: AngularFireDatabase, public afAuth: AngularFireAuth, public snackBar: MatSnackBar) {
-    this.user = afAuth.authState;
+  constructor(public db: AngularFireDatabase, public afAuth: AngularFireAuth,
+    public snackBar: MatSnackBar, public loginServiceService: LoginServiceService) {
+    this.user = this.loginServiceService.user;
+    this.visible = true;
     this.user.subscribe((user: firebase.User) => {
       console.log(user);
       this.currentUser = user;
@@ -57,10 +62,9 @@ export class ChatComponent {
             if (message.entities) {
               for (let entity of message.entities) {
                 if (!topicsMap.hasOwnProperty(entity.name)) {
-                  topicsMap[entity.name] = 0
+                  topicsMap[entity.name] = 0;
                 }
                 topicsMap[entity.name] += entity.salience;
-                hasEntities = true;
               }
             }
           });
@@ -91,6 +95,12 @@ export class ChatComponent {
     });
   }
 
+  hide() { this.visible = false; }
+
+  show() { this.visible = true; }
+
+  toggle() { this.visible = !this.visible; }
+
   // TODO: Refactor into text message form component
   update(value: string) {
     this.value = value;
@@ -108,7 +118,7 @@ export class ChatComponent {
         duration: 5000
       })
       .onAction()
-      .subscribe(() => this.login());
+      .subscribe(() => this.loginServiceService.login());
 
     return false;
   };

@@ -27,6 +27,7 @@ import { AppComponent } from './app.component';
 import { StylizePipe } from './stylize.pipe';
 import { environment } from '../environments/environment';
 import { ChatComponent } from './chat/chat.component';
+import { LoginServiceService } from './login-service.service';
 
 const configErrMsg = `You have not configured and imported the Firebase SDK.
 Make sure you go through the codelab setup instructions.`;
@@ -61,7 +62,9 @@ if (!environment.firebase) {
       AngularFireDatabaseModule,
       AngularFireAuthModule
    ],
-   providers: [],
+   providers: [
+     LoginServiceService
+   ],
    bootstrap: [
       AppComponent
    ]
