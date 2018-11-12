@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MatSnackBarModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -28,6 +29,8 @@ import { StylizePipe } from './stylize.pipe';
 import { environment } from '../environments/environment';
 import { ChatComponent } from './chat/chat.component';
 import { LoginServiceService } from './login-service.service';
+import { EncounterComponent } from './encounter/encounter.component';
+
 
 const configErrMsg = `You have not configured and imported the Firebase SDK.
 Make sure you go through the codelab setup instructions.`;
@@ -50,7 +53,8 @@ if (!environment.firebase) {
    declarations: [
       AppComponent,
       StylizePipe,
-      ChatComponent
+      ChatComponent,
+      EncounterComponent
    ],
    imports: [
       BrowserModule,
@@ -59,11 +63,12 @@ if (!environment.firebase) {
       BrowserAnimationsModule,
       MatSnackBarModule,
       AngularFireModule.initializeApp(environment.firebase),
+      AngularFirestoreModule,
       AngularFireDatabaseModule,
       AngularFireAuthModule
    ],
    providers: [
-     LoginServiceService
+      LoginServiceService
    ],
    bootstrap: [
       AppComponent

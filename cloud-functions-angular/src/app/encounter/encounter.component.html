@@ -1,0 +1,10 @@
+<p *ngIf="currentEncounter">
+    {{currentEncounter.name}}
+</p>
+  
+<div *ngIf="currentEncounter">
+    <div *ngFor="let transition of currentEncounter.transitions">
+        <span>{{transition.text}}</span>
+    </div>
+</div>
+    
