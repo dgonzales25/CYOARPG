@@ -4,7 +4,7 @@
   
 <div *ngIf="currentEncounter">
     <div *ngFor="let transition of currentEncounter.transitions">
-        <span>{{transition.text}}</span>
+        <button (click)="changeEncounter(transition)">{{transition.text}}</button>
     </div>
 </div>
     
