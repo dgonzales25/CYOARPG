@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs/Observable';
+import { PlayerService } from './player.service';
 
 const PROFILE_PLACEHOLDER_IMAGE_URL = '/assets/images/profile_placeholder.png';
 
@@ -16,6 +17,9 @@ export class LoginService {
 
     login() {
       this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+        // .then((credentials) => {
+        //     this.playerService.loadPlayer(credentials.user.uid);
+        // });
     }
 
     logout() {

@@ -31,6 +31,7 @@ import { ChatComponent } from './chat/chat.component';
 import { LoginService } from './services/login.service';
 import { EncounterComponent } from './encounter/encounter.component';
 import { GameService } from './services/game.service';
+import { CharacterSelectComponent } from './character-select/character-select.component';
 
 
 const configErrMsg = `You have not configured and imported the Firebase SDK.
@@ -55,7 +56,8 @@ if (!environment.firebase) {
       AppComponent,
       StylizePipe,
       ChatComponent,
-      EncounterComponent
+      EncounterComponent,
+      CharacterSelectComponent
    ],
    imports: [
       BrowserModule,

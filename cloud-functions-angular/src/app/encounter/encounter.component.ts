@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AngularFirestore, AngularFirestoreDocument, DocumentData, DocumentReference } from 'angularfire2/firestore';
+import { AngularFirestore } from 'angularfire2/firestore';
 import { Transition, Encounter } from '../models';
 
 @Component({
