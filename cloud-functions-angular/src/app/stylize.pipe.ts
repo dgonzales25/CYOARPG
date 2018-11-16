@@ -2,8 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeStyle } from '@angular/platform-browser';
 
 interface Sentiment {
-  score: number,
-  magnitude: number
+  score: number;
+  magnitude: number;
 }
 
 /*

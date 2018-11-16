@@ -28,8 +28,9 @@ import { AppComponent } from './app.component';
 import { StylizePipe } from './stylize.pipe';
 import { environment } from '../environments/environment';
 import { ChatComponent } from './chat/chat.component';
-import { LoginServiceService } from './login-service.service';
+import { LoginService } from './services/login.service';
 import { EncounterComponent } from './encounter/encounter.component';
+import { GameService } from './services/game.service';
 
 
 const configErrMsg = `You have not configured and imported the Firebase SDK.
@@ -68,7 +69,8 @@ if (!environment.firebase) {
       AngularFireAuthModule
    ],
    providers: [
-      LoginServiceService
+      LoginService,
+      GameService
    ],
    bootstrap: [
       AppComponent

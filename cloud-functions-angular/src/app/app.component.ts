@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 import { Component } from '@angular/core';
-import { LoginServiceService } from './login-service.service';
+import { LoginService } from './services/login.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs/Observable';
 
@@ -30,8 +30,8 @@ export class AppComponent {
   profilePicStyles: {};
   user: Observable<firebase.User>;
 
-  constructor(public loginServiceService: LoginServiceService) {
-    this.user = this.loginServiceService.user;
+  constructor(public loginService: LoginService) {
+    this.user = this.loginService.user;
 
     this.user.subscribe((user: firebase.User) => {
       if (user) { // User is signed in!
@@ -47,12 +47,12 @@ export class AppComponent {
   }
 
   login() {
-    this.loginServiceService.login();
-    this.user = this.loginServiceService.user;
+    this.loginService.login();
+    this.user = this.loginService.user;
   }
 
   logout() {
-    this.loginServiceService.logout();
+    this.loginService.logout();
     this.user = null;
   }
 

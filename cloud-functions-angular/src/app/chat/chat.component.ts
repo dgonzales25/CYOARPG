@@ -18,7 +18,7 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { MatSnackBar } from '@angular/material';
-import { LoginServiceService } from './../login-service.service';
+import { LoginService } from '../services/login.service';
 import * as firebase from 'firebase';
 
 const LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
@@ -39,8 +39,8 @@ export class ChatComponent {
   visible: boolean;
 
   constructor(public db: AngularFireDatabase, public afAuth: AngularFireAuth,
-    public snackBar: MatSnackBar, public loginServiceService: LoginServiceService) {
-    this.user = this.loginServiceService.user;
+    public snackBar: MatSnackBar, public loginService: LoginService) {
+    this.user = this.loginService.user;
     this.visible = true;
     this.user.subscribe((user: firebase.User) => {
       console.log(user);
@@ -118,7 +118,7 @@ export class ChatComponent {
         duration: 5000
       })
       .onAction()
-      .subscribe(() => this.loginServiceService.login());
+      .subscribe(() => this.loginService.login());
 
     return false;
   };

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 const PROFILE_PLACEHOLDER_IMAGE_URL = '/assets/images/profile_placeholder.png';
 
 @Injectable()
-export class LoginServiceService {
+export class LoginService {
     private _user: Observable<firebase.User>;
     private _currentUser: firebase.User;
 
@@ -15,7 +15,10 @@ export class LoginServiceService {
     }
 
     login() {
-      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
+      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then((credentials) => {
+            // TODO add to database credentials.user
+        });
     }
 
     logout() {
