@@ -22,7 +22,7 @@ export class PlayerService {
     });
   }
 
-  createGame(playerToCreate: Player) {
+  createPlayer(playerToCreate: Player) {
     this.db.collection('players').doc(playerToCreate.id).set(playerToCreate)
       .then(() => this.currentPlayer = playerToCreate)
       .catch((err) => console.error(err));

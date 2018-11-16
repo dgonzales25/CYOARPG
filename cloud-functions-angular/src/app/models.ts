@@ -22,6 +22,7 @@ export class Game {
 export class Player {
     id: string;
     username: string;
+    email: string;
     characters: Character[];
 }
 

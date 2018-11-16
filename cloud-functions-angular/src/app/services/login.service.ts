@@ -15,10 +15,7 @@ export class LoginService {
     }
 
     login() {
-      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-        .then((credentials) => {
-            // TODO add to database credentials.user
-        });
+      this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider());
     }
 
     logout() {
