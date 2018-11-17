@@ -23,6 +23,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MatSnackBarModule } from '@angular/material';
+import { HeaderComponent } from './header/header.component';
 
 import { AppComponent } from './app.component';
 import { StylizePipe } from './stylize.pipe';
@@ -32,7 +33,7 @@ import { LoginService } from './services/login.service';
 import { EncounterComponent } from './encounter/encounter.component';
 import { GameService } from './services/game.service';
 import { CharacterSelectComponent } from './character-select/character-select.component';
-
+import { RouterModule } from '@angular/router';
 
 const configErrMsg = `You have not configured and imported the Firebase SDK.
 Make sure you go through the codelab setup instructions.`;
@@ -43,6 +44,7 @@ re-generate the Firebase initialization snippet (step 4 of the codelab) and make
 sure the storageBucket attribute is not empty. You may also need to visit the
 Storage tab and paste the name of your bucket which is displayed there.`;
 
+// TODO get new firebase account before deployment since key is compromised
 if (!environment.firebase) {
   if (!environment.firebase.apiKey) {
     window.alert(configErrMsg);
@@ -56,6 +58,7 @@ if (!environment.firebase) {
       AppComponent,
       StylizePipe,
       ChatComponent,
+      HeaderComponent,
       EncounterComponent,
       CharacterSelectComponent
    ],
@@ -65,6 +68,21 @@ if (!environment.firebase) {
       HttpModule,
       BrowserAnimationsModule,
       MatSnackBarModule,
+      RouterModule.forRoot([
+         {
+            path: '',
+            component: CharacterSelectComponent
+         },
+         {
+            path: 'game/:id',
+            component: EncounterComponent
+         }
+         // TODO add 404 page
+         // {
+         //    path: '**',
+         //    component: NotFoundComponent
+         // }
+      ]),
       AngularFireModule.initializeApp(environment.firebase),
       AngularFirestoreModule,
       AngularFireDatabaseModule,

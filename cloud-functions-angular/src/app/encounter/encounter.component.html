@@ -1,10 +1,16 @@
-<p *ngIf="currentEncounter">
-    {{currentEncounter.name}}
-</p>
-  
-<div *ngIf="currentEncounter">
-    <div *ngFor="let transition of currentEncounter.transitions">
-        <button (click)="changeEncounter(transition)">{{transition.text}}</button>
+
+
+<div layout="row" flex>
+    <div flex="50">
+        <p *ngIf="currentEncounter">
+            {{currentEncounter.name}}
+        </p>
+        
+        <div *ngIf="currentEncounter">
+            <div *ngFor="let transition of currentEncounter.transitions">
+                <button (click)="changeEncounter(transition)">{{transition.text}}</button>
+            </div>
+        </div>
     </div>
-</div>
-    
+    <app-chat flex="50"></app-chat>
+</div> 
