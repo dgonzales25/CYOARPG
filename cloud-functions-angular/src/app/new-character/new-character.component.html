@@ -1,0 +1,29 @@
+<form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+  
+  <label>
+    Name:
+    <input type="text" formControlName="name">
+  </label>
+
+  <label>
+    Game:
+    <input type="text" formControlName="game">
+  </label>
+
+  <label>
+     Race:
+    <select formControlName="race">
+      <option *ngFor="let race of raceKeys" [value]="race">{{races[race]}}</option>
+    </select>
+  </label>
+
+  <label>
+      Class:
+     <select formControlName="class">
+        <option *ngFor="let class of classKeys" [value]="class">{{classes[class]}}</option>
+     </select>
+   </label>
+
+  <button type="submit" [disabled]="!profileForm.valid">Submit</button>
+
+</form>

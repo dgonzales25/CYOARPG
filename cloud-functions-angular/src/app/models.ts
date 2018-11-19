@@ -30,11 +30,21 @@ export class Character {
     id: string;
     game: DocumentReference;
     name: string;
+    race: Race;
+    class: Class;
     stats: Stats;
     skills: Skill[];
     items: Item[];
     equipment: Item[];
     money: Wallet;
+}
+
+export enum Class {
+    Unset, WIZARD, WARRIOR, RANGER
+}
+
+export enum Race {
+    Unset, HUMAN, ELF, DWARF
 }
 
 export class Stats {

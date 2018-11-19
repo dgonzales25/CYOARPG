@@ -15,9 +15,9 @@
  */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -34,6 +34,8 @@ import { EncounterComponent } from './encounter/encounter.component';
 import { GameService } from './services/game.service';
 import { CharacterSelectComponent } from './character-select/character-select.component';
 import { RouterModule } from '@angular/router';
+import { AuthGuard } from './services/auth-guard.service';
+import { NewCharacterComponent } from './new-character/new-character.component';
 
 const configErrMsg = `You have not configured and imported the Firebase SDK.
 Make sure you go through the codelab setup instructions.`;
@@ -60,7 +62,8 @@ if (!environment.firebase) {
       ChatComponent,
       HeaderComponent,
       EncounterComponent,
-      CharacterSelectComponent
+      CharacterSelectComponent,
+      NewCharacterComponent
    ],
    imports: [
       BrowserModule,
@@ -68,6 +71,7 @@ if (!environment.firebase) {
       HttpModule,
       BrowserAnimationsModule,
       MatSnackBarModule,
+      ReactiveFormsModule,
       RouterModule.forRoot([
          {
             path: '',
@@ -75,7 +79,8 @@ if (!environment.firebase) {
          },
          {
             path: 'game/:id',
-            component: EncounterComponent
+            component: EncounterComponent,
+            canActivate: [AuthGuard]
          }
          // TODO add 404 page
          // {
@@ -90,7 +95,8 @@ if (!environment.firebase) {
    ],
    providers: [
       LoginService,
-      GameService
+      GameService,
+      AuthGuard
    ],
    bootstrap: [
       AppComponent
