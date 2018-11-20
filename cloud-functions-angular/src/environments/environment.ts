@@ -24,11 +24,11 @@ export const environment = {
     // ***********************************************************************************************************************
     // * TODO(DEVELOPER): Update values according to: Firebase Console > Overview > Add Firebase to your web app. *
     // ***********************************************************************************************************************
-    apiKey: 'AIzaSyClfMUoZTPc3XAemuJWepNda73AKrtb0jM',
-    authDomain: 'chooseyourownadventure-3d5cb.firebaseapp.com',
-    databaseURL: 'https://chooseyourownadventure-3d5cb.firebaseio.com',
-    projectId: 'chooseyourownadventure-3d5cb',
-    storageBucket: 'chooseyourownadventure-3d5cb.appspot.com',
-    messagingSenderId: '14331628412'
+    apiKey: 'AIzaSyCwslseO-9Tq4BQeZ2Blfep5LZfcshIkCI',
+    authDomain: 'cyoarpg.firebaseapp.com',
+    databaseURL: 'https://cyoarpg.firebaseio.com',
+    projectId: 'cyoarpg',
+    storageBucket: 'cyoarpg.appspot.com',
+    messagingSenderId: '887888039491'
   }
 };

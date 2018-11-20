@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "chooseyourownadventure-3d5cb"
+    "default": "cyoarpg",
+    "cyoarpg ": "cyoarpg"
   }
 }
