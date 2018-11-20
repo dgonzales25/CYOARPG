@@ -1,14 +1,14 @@
 import * as functions from 'firebase-functions';
 import * as firebase from 'firebase';
+import * as firebaseAdmin from 'firebase-admin';
 
+const admin = firebaseAdmin.initializeApp();
 const firebaseObject = firebase.initializeApp({
-    apiKey: 'AIzaSyClfMUoZTPc3XAemuJWepNda73AKrtb0jM',
-    authDomain: 'chooseyourownadventure-3d5cb.firebaseapp.com',
-    databaseURL: 'https://chooseyourownadventure-3d5cb.firebaseio.com',
-    projectId: 'chooseyourownadventure-3d5cb',
-    storageBucket: 'chooseyourownadventure-3d5cb.appspot.com',
-    messagingSenderId: '14331628412'
-  });
+    databaseURL: admin.instanceId().app.options.databaseURL,
+    projectId: admin.instanceId().app.options.projectId
+});
+
+
 
 const firestore = firebase.firestore();  
 const settings = {timestampsInSnapshots: true};

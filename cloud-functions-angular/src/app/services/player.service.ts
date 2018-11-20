@@ -1,8 +1,9 @@
 import { LoginService } from './login.service';
-import { Player } from './../models';
+import { Player, Character } from './../models';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { FirebaseApp } from 'angularfire2';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,10 @@ export class PlayerService {
   private _currentPlayer: Observable<any>;
   private _player: Player;
 
+
   constructor(private db: AngularFirestore, loginService: LoginService) {
     loginService.user.subscribe((user) => {
+
       this._currentPlayer = this.db.collection('players').doc(user.uid).get();
       this.loadPlayer(user.uid);
     });
@@ -31,5 +34,17 @@ export class PlayerService {
   }
   get player(): Player {
     return this._player;
+  }
+
+  addCharacter(character: Character) {
+    // This does not add it just makes it the only character
+    // Maybe send a reference? or have cloud function create objects
+    this.db.collection('players').doc(this._player.id).set(
+      { characters: [character] }, { merge: true }
+    );
+
+    // this.db.collection('players').doc(this._player.id).update({
+    //   characters: firebase.firestore.FieldValue.arrayUnion(character)
+    // });
   }
 }
