@@ -14,20 +14,19 @@ export class Transition {
 export class Game {
     id: string;
     players: DocumentReference[];
-    characters: Character[];
+    characters: DocumentReference[];
     // lastCity: Encounter;
-    encounter: Encounter;
+    encounter: DocumentReference;
 }
 
 export class Player {
     id: string;
     username: string;
     email: string;
-    characters: Character[];
+    characters: DocumentReference[];
 }
 
 export class Character {
-    id: string;
     game: DocumentReference;
     name: string;
     race: Race;

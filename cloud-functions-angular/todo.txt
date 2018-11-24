@@ -1,0 +1,5 @@
+After initial concept make into a website where other people can
+ create their own adventures and bring them into the overworld
+ as part of the main story or own world
+
+ Add revinue is split between server cost, me, and creator

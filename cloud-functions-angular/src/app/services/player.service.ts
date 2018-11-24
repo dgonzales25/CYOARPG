@@ -3,7 +3,7 @@ import { Player, Character } from './../models';
 import { Injectable } from '@angular/core';
 import { AngularFirestore, DocumentSnapshot } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { FirebaseApp } from 'angularfire2';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
@@ -37,11 +37,19 @@ export class PlayerService {
   }
 
   addCharacter(character: Character) {
+    const addCharacter = firebase.functions().httpsCallable('addCharacter');
+    addCharacter(character).then(result => {
+      console.log(result);
+    })
+    .catch(err => {
+      console.error(err);
+    });
+
     // This does not add it just makes it the only character
     // Maybe send a reference? or have cloud function create objects
-    this.db.collection('players').doc(this._player.id).set(
-      { characters: [character] }, { merge: true }
-    );
+    // this.db.collection('players').doc(this._player.id).set(
+    //   { characters: [character] }, { merge: true }
+    // );
 
     // this.db.collection('players').doc(this._player.id).update({
     //   characters: firebase.firestore.FieldValue.arrayUnion(character)

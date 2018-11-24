@@ -1,3 +1,5 @@
-<p>Hi {{player.username}}</p>
-<span *ngFor="let character of player.characters">{{character.name}}</span>
+<p *ngIf="player">Hi {{player.username}}</p>
+<div *ngIf="characters" >
+    <span *ngFor="let character of player.characters">{{character.name}}</span>
+</div>
 <app-new-character></app-new-character>

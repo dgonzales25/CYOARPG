@@ -33,8 +33,7 @@ export class NewCharacterComponent {
     // TODO create cloud function to create game and add character
     this.playerService.addCharacter(
     {
-      id: '',
-      game: null,
+      game: this.profileForm.value.game,
       name: this.profileForm.value.name,
       race: this.profileForm.value.race,
       class: this.profileForm.value.class,

@@ -20,11 +20,5 @@ export class GameService {
       console.error(err);
     });
   }
-
-  createGame(gameToCreate: Game) {
-    this.db.collection('games').doc(gameToCreate.id).set(gameToCreate)
-      .then(() => this.currentGame = gameToCreate)
-      .catch((err) => console.error(err));
-  }
 }
 

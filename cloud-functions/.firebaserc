@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "cyoarpg",
-    "cyoarpg ": "cyoarpg"
+    "cyoarpg ": "cyoarpg",
+    "cyoarpg": "cyoarpg-9189c"
   }
 }
